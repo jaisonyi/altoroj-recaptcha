@@ -99,6 +99,11 @@ To use **real** protection:
 
 ## Two versions: real reCAPTCHA vs. scannable (test-key) build
 
+> 📄 **Applying this to your own apps?** For a version-agnostic, step-by-step guide to making *any*
+> reCAPTCHA-protected application safe to run automated tests / DAST scans against, see
+> **[TEST-ENV-FOR-RECAPTCHA-APPS.md](TEST-ENV-FOR-RECAPTCHA-APPS.md)**. The rest of this section is the
+> AltoroJ-specific worked example.
+
 You'll often want **two deployments side by side**:
 
 - **Real-auth version** — your registered Site + Secret keys; the checkbox genuinely blocks bots. For demos and realistic use.
