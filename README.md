@@ -79,6 +79,7 @@ the challenge is solved.
 
 By default the app ships with Google's **official reCAPTCHA v2 test keys**, so it runs with zero setup. The
 test keys always pass and display a *"This reCAPTCHA is for testing purposes only"* banner on the widget.
+These are Google's **official** automated-testing key pair ([reCAPTCHA FAQ](https://developers.google.com/recaptcha/docs/faq) → *"I'd like to run automated tests with reCAPTCHA. What should I do?"* — *"You will always get No CAPTCHA and all verification requests will pass"*), which is exactly why a DAST scanner — just automated traffic — can authenticate through them.
 
 To use **real** protection:
 

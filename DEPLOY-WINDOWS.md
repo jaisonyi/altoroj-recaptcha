@@ -181,7 +181,10 @@ reCAPTCHA is an anti-automation control; a DAST scanner is automation. **No scan
 reCAPTCHA token** (that's the whole point of reCAPTCHA), and the token is single-use + expires in ~2 minutes,
 so a recorded login cannot be replayed. The standard, HCL-recommended approach is to scan an instance where
 the CAPTCHA is neutralized using Google's **public test keys** (they always pass verification). The scanner
-then tests the real authenticated attack surface; the CAPTCHA itself is not the DAST target.
+then tests the real authenticated attack surface; the CAPTCHA itself is not the DAST target. These test
+keys are Google's **official** pair for automated testing ([reCAPTCHA FAQ](https://developers.google.com/recaptcha/docs/faq)
+→ *"I'd like to run automated tests with reCAPTCHA. What should I do?"* — *"You will always get No CAPTCHA
+and all verification requests will pass"*); a DAST scanner is simply one form of automated traffic.
 
 > **How easy is this?** No code changes — just the two test-key values in `recaptcha.properties`, which are the **repo default**, so the default build is *already* scannable. To flip an already-deployed real-key instance to scannable, edit `webapps\altoro-recaptcha\WEB-INF\classes\recaptcha.properties` back to the test keys and restart Tomcat (~2-line change, no rebuild).
 
