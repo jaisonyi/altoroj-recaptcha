@@ -103,6 +103,8 @@ You'll often want **two deployments side by side**:
 - **Real-auth version** — your registered Site + Secret keys; the checkbox genuinely blocks bots. For demos and realistic use.
 - **Scannable version** — Google's public **test keys** (they always pass) so a DAST scanner such as **AppScan** can log in and reach the authenticated attack surface. reCAPTCHA is anti-automation *by design*, so a scanner cannot solve a real challenge — a test-key build is the HCL-recommended way to scan the app behind it.
 
+> **How easy is this?** Making the reCAPTCHA app a scannable target takes **no code changes** — only the two test-key values in `src/recaptcha.properties`, and those are the **repo default**. So the out-of-the-box build (`./gradlew war`) is *already* scannable; adding **real** protection is the extra step, not removing it. To flip an already-deployed real-key instance to scannable, edit its `WEB-INF/classes/recaptcha.properties` back to the test keys and restart — a ~2-line change, no rebuild.
+
 Both can run on **one Tomcat** as long as each uses a **different `db.name`** (the embedded Derby DB locks its directory to a single booter) and a **different war filename** (the filename becomes the URL context path):
 
 | Version | war → context | reCAPTCHA keys | `db.name` |

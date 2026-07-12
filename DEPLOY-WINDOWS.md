@@ -183,6 +183,8 @@ so a recorded login cannot be replayed. The standard, HCL-recommended approach i
 the CAPTCHA is neutralized using Google's **public test keys** (they always pass verification). The scanner
 then tests the real authenticated attack surface; the CAPTCHA itself is not the DAST target.
 
+> **How easy is this?** No code changes — just the two test-key values in `recaptcha.properties`, which are the **repo default**, so the default build is *already* scannable. To flip an already-deployed real-key instance to scannable, edit `webapps\altoro-recaptcha\WEB-INF\classes\recaptcha.properties` back to the test keys and restart Tomcat (~2-line change, no rebuild).
+
 Thanks to the configurable `db.name` (see [§5](#5-database-notes)), you can run a **second, test-key instance
 alongside your real-key instance on the same Tomcat** — one to demo the real reCAPTCHA UX, one for AppScan to
 actually scan:
