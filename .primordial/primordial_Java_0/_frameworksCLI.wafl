@@ -1,0 +1,134 @@
+<wafl xmlns="http://www.ibm.com/WAFLSchema">
+  <global-bean-decls>
+  </global-bean-decls>
+  <synthetic-methods>
+  </synthetic-methods>
+  <entrypoints>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.filter.AdminFilter.destroy():void">
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.filter.AdminFilter.doFilter(javax.servlet.ServletRequest;javax.servlet.ServletResponse;javax.servlet.FilterChain):void">
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.filter.AdminFilter.init(javax.servlet.FilterConfig):void">
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.filter.AuthFilter.destroy():void">
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.filter.AuthFilter.doFilter(javax.servlet.ServletRequest;javax.servlet.ServletResponse;javax.servlet.FilterChain):void">
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.filter.AuthFilter.init(javax.servlet.FilterConfig):void">
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.AccountViewServlet.doGet(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/showAccount</url>
+      <url>/bank/showTransactions</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.AccountViewServlet.doPost(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/showAccount</url>
+      <url>/bank/showTransactions</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.AdminLoginServlet.doPost(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/admin/doAdminLogin</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.AdminServlet.doPost(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/admin/addAccount</url>
+      <url>/admin/changePassword</url>
+      <url>/admin/addUser</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.CCApplyServlet.doPost(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/ccApply</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.FeedbackServlet.doPost(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/sendFeedback</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.LoginServlet.doGet(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/doLogin</url>
+      <url>/logout.jsp</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.LoginServlet.doPost(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/doLogin</url>
+      <url>/logout.jsp</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.RedirectServlet.doGet(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/default.aspx</url>
+      <url>/subscribe.aspx</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.SubscribeServlet.doPost(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/doSubscribe</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.SurveyServlet.doGet(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/static/doSurvey</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.TransferServlet.doGet(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/doTransfer</url>
+    </entrypoint>
+    <entrypoint sig="com.ibm.security.appscan.altoromutual.servlet.TransferServlet.doPost(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/doTransfer</url>
+    </entrypoint>
+    <entrypoint sig="javax.servlet.GenericServlet.destroy():void">
+    </entrypoint>
+    <entrypoint sig="javax.servlet.GenericServlet.init():void">
+    </entrypoint>
+    <entrypoint sig="javax.servlet.GenericServlet.init(javax.servlet.ServletConfig):void">
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.admin.admin_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/admin/admin.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.admin.feedbackReview_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/admin/feedbackReview.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.admin.login_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/admin/login.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.bank.apply_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/apply.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.bank.applysuccess_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/applysuccess.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.bank.balance_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/balance.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.bank.customize_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/customize.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.bank.main_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/main.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.bank.queryxpath_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/queryxpath.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.bank.stocks_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/stocks.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.bank.transaction_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/transaction.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.bank.transfer_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/bank/transfer.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.feedback_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/feedback.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.index_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/index.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.login_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/login.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.search_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/search.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.status_005fcheck_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/status_check.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.subscribe_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/subscribe.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.survey_005fquestions_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/survey_questions.jsp</url>
+    </entrypoint>
+    <entrypoint sig="org.apache.jsp.util.serverStatusCheckService_jsp._jspService(javax.servlet.http.HttpServletRequest;javax.servlet.http.HttpServletResponse):void">
+      <url>/util/serverStatusCheckService.jsp</url>
+    </entrypoint>
+  </entrypoints>
+  <call-replacements>
+  </call-replacements>
+</wafl>

@@ -1,0 +1,24 @@
+# Build output
+/build/
+/bin/
+/.gradle/
+
+# Derby demo database + logs (created at runtime)
+derby.log
+/altoro/
+
+# OS / editor
+.DS_Store
+*.iml
+.idea/
+.settings/
+.classpath
+.project
+appscan_results*
+asoc_scan_timer.*
+*.irx
+*_logs.zip
+.scans/
+appscan-config.xml
+ASPM_*
+*_Knox_*
