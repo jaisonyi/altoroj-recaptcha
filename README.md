@@ -96,6 +96,73 @@ To use **real** protection:
 
 ---
 
+## Two versions: real reCAPTCHA vs. scannable (test-key) build
+
+You'll often want **two deployments side by side**:
+
+- **Real-auth version** — your registered Site + Secret keys; the checkbox genuinely blocks bots. For demos and realistic use.
+- **Scannable version** — Google's public **test keys** (they always pass) so a DAST scanner such as **AppScan** can log in and reach the authenticated attack surface. reCAPTCHA is anti-automation *by design*, so a scanner cannot solve a real challenge — a test-key build is the HCL-recommended way to scan the app behind it.
+
+Both can run on **one Tomcat** as long as each uses a **different `db.name`** (the embedded Derby DB locks its directory to a single booter) and a **different war filename** (the filename becomes the URL context path):
+
+| Version | war → context | reCAPTCHA keys | `db.name` |
+|---------|---------------|----------------|-----------|
+| Real | `altoro-recaptcha.war` → `/altoro-recaptcha/` | your **real** keys | `altoro_recaptcha` |
+| Scan | `altoro-recaptcha-scan.war` → `/altoro-recaptcha-scan/` | Google **test** keys (default) | `altoro_recaptcha_scan` |
+
+Both `db.name` **and** the keys live in `src/recaptcha.properties` (baked into the war at build time), and can also be overridden per-deployment in `<tomcat>/webapps/<context>/WEB-INF/classes/recaptcha.properties`.
+
+### Option A — build twice (two self-contained wars)
+
+Each war carries its own keys + `db.name`; just drop both into `webapps/`.
+
+**1) Scan war** (test keys, separate DB):
+```sh
+# In src/recaptcha.properties:
+#   recaptcha.siteKey / recaptcha.secretKey  -> leave the Google TEST keys (the default)
+#   db.name=altoro_recaptcha_scan
+export JAVA_HOME=/path/to/jdk-17
+./gradlew war
+mv build/libs/altoro-recaptcha.war build/libs/altoro-recaptcha-scan.war
+```
+
+**2) Real war** (your keys, default DB):
+```sh
+# In src/recaptcha.properties:
+#   recaptcha.siteKey    = <your real Site key>
+#   recaptcha.secretKey  = <your real Secret key>
+#   db.name=altoro_recaptcha
+./gradlew war
+# -> build/libs/altoro-recaptcha.war
+```
+> 🔒 **Never commit the real Secret key.** Set it only for the build, then revert `src/recaptcha.properties` (the repo default is test keys). Keep the real-key war out of git.
+
+Drop **both** wars into `<tomcat>/webapps/` and start Tomcat once.
+
+### Option B — build once (configure per deployment)
+
+One build; you set the keys + `db.name` on each deployed copy — no rebuild for the second flavor.
+
+```sh
+./gradlew war   # -> build/libs/altoro-recaptcha.war  (ships with test keys, db.name=altoro_recaptcha)
+```
+1. Copy the **same** war in twice, under the two context names:
+   ```sh
+   cp build/libs/altoro-recaptcha.war <tomcat>/webapps/altoro-recaptcha.war
+   cp build/libs/altoro-recaptcha.war <tomcat>/webapps/altoro-recaptcha-scan.war
+   ```
+2. Start Tomcat once so both wars expand — **but don't log in yet** (the Derby DB is created on first login).
+3. Edit each expanded copy's `WEB-INF/classes/recaptcha.properties`:
+   - `webapps/altoro-recaptcha/…` → your **real** Site/Secret keys, `db.name=altoro_recaptcha`
+   - `webapps/altoro-recaptcha-scan/…` → leave the **test** keys, **`db.name=altoro_recaptcha_scan`**
+4. **Restart Tomcat**, then log in to each. Each now boots its own database.
+
+> ⚠️ Change the scan instance's `db.name` **before its first login.** If both copies still point at `altoro_recaptcha`, the second to initialize fails with *"Another instance of Derby may have already booted the database."*
+
+For pointing AppScan at the scan instance (recording the login, untracking `g-recaptcha-response`, in-session rules), see **[DEPLOY-WINDOWS.md §7](DEPLOY-WINDOWS.md#7-running-a-test-key-instance-for-appscan--dast-scanning)**.
+
+---
+
 ## Running altoroj-mfa and altoroj-recaptcha together
 
 **Why this matters:** you'll often want to demo or scan **both** login-hardening variants (MFA and reCAPTCHA)
